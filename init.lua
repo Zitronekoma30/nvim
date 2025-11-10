@@ -47,3 +47,7 @@ end, { desc = "Reload Lua config modules" })
 -- 4️⃣ Quick save & quit
 keymap('n', '<leader>w', ':w<CR>', { desc = "Save file" })
 keymap('n', '<leader>q', ':q<CR>', { desc = "Quit" })
+
+-- Use system clipboard as default for all yank, delete, change and put operations
+vim.opt.clipboard = "unnamedplus"
+

@@ -7,6 +7,7 @@ return {
       require("mini.bracketed").setup()
       require("mini.statusline").setup()
       require("mini.icons").setup()
+      require('mini.hues').setup({ background = '#1a1e21', foreground = '#c1ccc0', n_hues = 6 })
 
       -- Keymap for Pick files
       vim.keymap.set('n', '<leader>f', '<cmd>Pick files<cr>', { desc = "Find files" })
