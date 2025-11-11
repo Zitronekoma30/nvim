@@ -51,3 +51,11 @@ keymap('n', '<leader>q', ':q<CR>', { desc = "Quit" })
 -- Use system clipboard as default for all yank, delete, change and put operations
 vim.opt.clipboard = "unnamedplus"
 
+-- Format hotkey
+keymap('n', '<leader>c', function()
+    -- Use vim.lsp.format() with a reliable setup
+    vim.lsp.format({
+        async = true,
+        timeout_ms = 1000,
+    })
+end, { desc = "LSP/External Formatter" })
