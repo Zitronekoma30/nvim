@@ -18,10 +18,17 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
 require("config.lazy")
 
+-- Colorscheme
+vim.cmd.colorscheme 'miniautumn'
+
 -- =========================
 -- Keymaps
 -- =========================
 local keymap = vim.keymap.set
+
+-- Omnicomplete
+-- Map Control+Space in Insert mode (i) to the <C-x><C-o> sequence
+vim.keymap.set('i', '<C-\\>', '<C-x><C-o>', { desc = 'Trigger Omni-completion (C-Backslash)' })
 
 -- 1️⃣ :norm mappings
 keymap('n', '<leader>n', [[:norm ]], { desc = "Start :norm command" })

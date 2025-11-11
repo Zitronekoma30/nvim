@@ -1,3 +1,4 @@
+-- TIPS: shift k (K) on a textobject for docs
 return {
 	-- Mason: manages external tools
 	{
