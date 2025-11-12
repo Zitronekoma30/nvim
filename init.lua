@@ -19,7 +19,7 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 require("config.lazy")
 
 -- Colorscheme
-vim.cmd.colorscheme 'miniautumn'
+vim.cmd.colorscheme 'retrobox'
 
 -- =========================
 -- Keymaps
@@ -66,3 +66,10 @@ keymap('n', '<leader>c', function()
         timeout_ms = 1000,
     })
 end, { desc = "LSP/External Formatter" })
+
+-- Transparent Background
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
