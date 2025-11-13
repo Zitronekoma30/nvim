@@ -1,4 +1,5 @@
 -- TIPS: shift k (K) on a textobject for docs
+-- Configure Diagnostic appearance globally
 return {
 	-- Mason: manages external tools
 	{
@@ -18,35 +19,22 @@ return {
 
 			local on_attach = function(client, bufnr)
 				print("LSP attached:", client.name)
-				-- You should move on_attach keymaps/setup into an LspAttach autocommand
-				-- for the best practice, but for a direct migration, keep the logic here.
+				vim.keymap.set('n', '<leader>i', function()
+					vim.diagnostic.open_float()
+				end, { buffer = bufnr, desc = 'Open Diagnostic Float' })
 			end
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "pyright" },
-				-- mason-lspconfig now automatically enables installed LSPs by default
-				-- (using vim.lsp.enable()), so no setup_handlers is needed.
-				-- If you want to configure which servers are auto-enabled, you can use
-				-- `automatic_enable = { ... }` here.
-			})
-
-			--- Common configuration for ALL LSPs ---
-			vim.lsp.config('*', {
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-
-			--- Specific configuration for 'pyright' ---
-			vim.lsp.config('pyright', {
-				settings = {
-					python = {
-						analysis = {
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							diagnosticMode = "workspace",
-						},
-					},
-				},
+			    ensure_installed = { "lua_ls", "rust_analyzer", "pyright" },
+			
+			    handlers = {
+				function(server_name)
+					require("lspconfig")[server_name].setup({
+						capabilities = capabilities,
+						on_attach = on_attach,
+					})
+				end,
+			    },
 			})
 
 			-- NOTE: For servers that mason-lspconfig installs, you might not
@@ -67,7 +55,12 @@ return {
 	},
 
 	-- Core LSP support
-	{ "neovim/nvim-lspconfig" },
+	{ 
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("lsp")
+		end,
+	},
 
 	-- Autocompletion
 	{

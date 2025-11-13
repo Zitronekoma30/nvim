@@ -73,3 +73,19 @@ vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
+
+-- Diagnostics
+vim.diagnostic.config({
+    -- Show diagnostic messages inline as "virtual text"
+    virtual_text = {
+        prefix = '', -- Prefix for the inline message (a nice icon)
+        source = true, -- Include the source (e.g., [pyright])
+    },
+    -- Auto-open a floating window when the cursor is idle on a diagnostic
+    float = {
+        source = true,
+        border = "rounded",
+        focusable = false,
+        header = " LSP Diagnostic ",
+    },
+})
