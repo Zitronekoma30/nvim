@@ -15,6 +15,8 @@ vim.opt.lazyredraw = true       -- Faster redraw while typing
 vim.opt.mouse = "a"             -- Enable mouse support
 vim.opt.undofile = true         -- Persistent undo
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 require("config.lazy")
 

@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- List of servers
-local servers = { "pyright", "lua_ls", "rust_analyzer" }
+local servers = { "pyright", "lua_ls", "rust_analyzer", "clangd" }
 
 for _, server in ipairs(servers) do
     vim.lsp.config(server, {})  -- minimal config
